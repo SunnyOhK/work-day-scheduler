@@ -16,19 +16,19 @@ Link to the live site: https://sunnyohk.github.io/work-day-scheduler/
 
 - Key features:
     - Sharper and more visible text upon hovering over each time block:
-        <img src = "assets/time-slot-hover.png">
+        <br><img src = "assets/time-slot-hover.png">
 
     - Floppy disk save icons to set your schedule inputs (with hover):
-        <img src = "assets/save-icon.png">
+        <br><img src = "assets/save-icon.png">
 
     - Saved events will remain within the hourly field until the user clears the list:
-        <img src = "assets/saved-schedule-events.png">
+        <br><img src = "assets/saved-schedule-events.png">
 
     - Color-coding to display time periods of past, present, and future based on user's current time of the day.
-        <img src = "assets/past-present-future.png">
+        <br><img src = "assets/past-present-future.png">
     
     - And a "Clear My Schedule" button to wipe the slate clean (complete with hover effects):
-        <img src = "assets/clear-input-static.png">
+        <br><img src = "assets/clear-input-static.png">
         <img src = "assets/clear-input-hover.png">
 
 ## Resources
