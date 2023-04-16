@@ -1,6 +1,19 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Sofia Sans Condensed', 'Open Sans', sans-serif;
   font-size: 16px;
+}
+
+.bg {
+  background-image: url("../background-img.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#space {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 h2 {
@@ -54,11 +67,24 @@ textarea {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #19b6da;
   color: white;
+  font-size: 25px;
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
+  font-size: 30px;
   transition: all 0.3s ease-in-out;
+}
+
+.clearBtn {
+  width: 14rem;
+  height: 3rem;
+  border-radius: 12px;
+  font-size: 20px;
+  letter-spacing: .2em;
+}
+
+.clearBtn:hover {
+  
 }
