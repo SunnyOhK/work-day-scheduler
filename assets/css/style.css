@@ -1,6 +1,6 @@
 body {
   font-family: 'Sofia Sans Condensed', 'Open Sans', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .bg {
@@ -19,6 +19,17 @@ body {
 h2 {
   color: #000000;
   font-size: 20px;
+}
+
+#subtitle {
+  color: #000000;
+  font-size: 32px;
+  font-family: 'Lora', sans-serif;
+}
+
+#time-ticker {
+  color: #000000;
+  font-size: 45px;
 }
 
 textarea {
@@ -86,5 +97,9 @@ textarea {
 }
 
 .clearBtn:hover {
-  
+  color: #c21802;
+  border: #c21802 solid 3px;
+  background: #ffffff;
+  font-size: 24px;
+  font-weight: bolder;
 }
