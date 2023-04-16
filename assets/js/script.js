@@ -1,106 +1,63 @@
-//  Calendar App
-
-// Read from localStrorage
-//  Populate page with data if exists in localStorage
-
-// click event with delegation to target the text area assoc with the save button
-// use the sibling DOM method to traverse the DOM, event.target parent/sibling
-//  capture the value of the text area, save string to local storage 
-
-// Use Dayjs to get current time use military time
-// read the value of the time block from the html
-// if statement that compares the vales and adds a class to change the color
-// loop through html elements and read a data-attribute time
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
-
 // GLOBAL VARIABLES
-// Reference moment.js
-var today = moment();
-// reference the whole task (time and textarea)
-var timeBlockEl = document.querySelector('.container');
 
-// REFERENCES
-// Display the current date and time on the paragraph with an id of "currentDay"
-$('#currentDay').text(today.format('LLLL')); // LLLL shows day of the week, date and time
+var timeDisplay = $('#currentDay'); 
 
-// EVENT LISTENER
-// Event listener for saveBtn click
-$('.saveBtn').on('click', function () {
-  // get nearby values of the description in jQuery
-  var textValue = $(this).siblings('.description').val();
-  // get the id attribute of the parent div element
-  var timeKey = $(this).parent().attr('id');
 
-  // save in local storage
-  localStorage.setItem(timeKey, textValue);
-});
+// DISPLAY CURRENT DATE & TIME IN HEADER
 
-// Get item from local storage if any
-$('#hour8 .description').val(localStorage.getItem('hour8'));
-$('#hour9 .description').val(localStorage.getItem('hour9'));
-$('#hour10 .description').val(localStorage.getItem('hour10'));
-$('#hour11 .description').val(localStorage.getItem('hour11'));
-$('#hour12 .description').val(localStorage.getItem('hour12'));
-$('#hour13 .description').val(localStorage.getItem('hour13'));
-$('#hour14 .description').val(localStorage.getItem('hour14'));
-$('#hour15 .description').val(localStorage.getItem('hour15'));
-$('#hour16 .description').val(localStorage.getItem('hour16'));
-$('#hour17 .description').val(localStorage.getItem('hour17'));
+let timeShow = $("#currentDay");
 
-// Function to track tasks and make them change colors if they are in the past, present or future
-function auditTask() {
-  // get current number of hours
-  var currentHour = today.hours();
-
-  // loop over each time block
-  $('.time-block').each(function () {
-    var timeId = parseInt($(this).attr('id').split("hour")[1]);
-
-    // if the time Id attribute is before the current hour, add the past class
-    if (timeId < currentHour) {
-      $(this).addClass('past');
-    } // if the time Id attribute is equal to the current hour, remove the past and future classes and add the present class
-    else if (timeId === currentHour) {
-      $(this).removeClass('past');
-      $(this).removeClass('future');
-      $(this).addClass('present');
-    } // If the time Id attribute is greater than the current time, remove the past and present classes and add the future class
-    else {
-      $(this).removeClass('past');
-      $(this).removeClass('present');
-      $(this).addClass('future');
-    }
-  });
+function showTime() {
+  let rn = dayjs().format(
+    "MMM DD, YYYY [at] hh:mm:ss a"
+  );
+  timeShow.text(rn);
 }
 
-// Call the audit task function
-auditTask();
+showTime();
+setInterval(showTime, 1000);
 
-// Use setTimeout to update the time every minute (1000ms * 60s)
-setTimeout(function () {
-  // clear the current URL
-  location = ''; // location references the current URL
-}, 1000 * 60);
+// SET SAVE BUTTONS AND STORE USER INPUT TO LOCAL STORAGE
+
+$(".saveBtn").click(function () {
+  let description = $(this).siblings(".description").val();
+  
+  let inputTime = $(this).parent().attr("id").split("-")[1];
+  
+  localStorage.setItem(inputTime, description);
+  
+});
+
+// ASSIGN ROW COLOR BASED ON TIME-FROM-NOW
+
+$(".time-block").each(function () {
+  let hourHour = dayjs().format("HH");
+  let rowHour = parseInt($(this).attr("id").split("-")[1]);
+
+  if (rowHour === hourHour) {
+    $(this).addClass("present");
+  } else if (rowHour > hourHour) {
+    $(this).addClass("future");
+  } else {
+    $(this).addClass("past");
+  }
+});
+
+$("#hour-08 .description").val(localStorage.getItem("08"));
+$("#hour-09 .description").val(localStorage.getItem("09"));
+$("#hour-10 .description").val(localStorage.getItem("10"));
+$("#hour-11 .description").val(localStorage.getItem("11"));
+$("#hour-12 .description").val(localStorage.getItem("12"));
+$("#hour-13 .description").val(localStorage.getItem("13"));
+$("#hour-14 .description").val(localStorage.getItem("14"));
+$("#hour-15 .description").val(localStorage.getItem("15"));
+$("#hour-16 .description").val(localStorage.getItem("16"));
+$("#hour-17 .description").val(localStorage.getItem("17"));
+
+// OPTION TO CLEAR LOCAL STORAGE
+
+$(".clearBtn").click(function () {
+  $(".description").val("");
+
+  localStorage.clear();
+});
